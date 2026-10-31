@@ -1,0 +1,30 @@
+{
+  "name": "restaurant-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --watch",
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gedeotwiz/restaurant-system.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gedeotwiz/restaurant-system/issues"
+  },
+  "homepage": "https://github.com/Gedeotwiz/restaurant-system#readme",
+  "devDependencies": {
+    "css-loader": "^7.1.5",
+    "html-webpack-plugin": "^5.6.8",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.112.2",
+    "webpack-cli": "^7.3.1",
+    "webpack-dev-server": "^6.1.0"
+  }
+}
