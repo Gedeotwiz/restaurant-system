@@ -49,7 +49,6 @@ button {
             #fff5e9,
             #ffebd7);
     border: 1px solid #f4c69e;
-    border-radius: 18px;
     padding: 0 clamp(20px, 4.2vw, 65px);
 }
 
@@ -61,6 +60,15 @@ button {
     justify-content: space-between;
     position: relative;
     z-index: 5;
+    background:
+        radial-gradient(circle at 85% 15%,
+            #ffdfbd 0,
+            transparent 35%),
+        linear-gradient(110deg,
+            #fff5e9,
+            #ffebd7);
+    padding: 0 clamp(20px, 4.2vw, 65px);
+
 }
 
 .logo {

@@ -5,33 +5,6 @@ function homePage() {
 
     home.innerHTML = `
         
-        <header class="navbar">
-
-            <a href="#" class="logo">
-                <span class="logo-icon">🍴</span>
-                <span>
-                    Velora
-                    <small>Dining</small>
-                </span>
-            </a>
-
-            <nav class="nav-links">
-                <a href="#about">About Us</a>
-                <a href="#menu">Menu</a>
-                <a href="#reviews">Reviews</a>
-                <a href="#contacts">Contacts</a>
-                <a href="#shop">Shop</a>
-            </nav>
-
-            <button class="cart-button" aria-label="Shopping cart">
-                🛒
-                <span class="cart-count">02</span>
-            </button>
-
-        </header>
-
-
-        
         <section class="hero">
 
             
