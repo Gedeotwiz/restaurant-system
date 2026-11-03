@@ -1,53 +1,82 @@
-import "./style.css"
-import homePage from "./pages/home"
-import Menu from "./pages/menu"
+import "./style.css";
+import homePage from "./pages/home";
+import Menu from "./pages/menu";
 
-const routes={
-    "/":homePage,
-    "/menu":Menu,
+const BASE_PATH = process.env.NODE_ENV === "production"
+    ? "/restaurant-system"
+    : "";
+
+const routes = {
+    "/": homePage,
+    "/menu": Menu,
+};
+
+function getRoutePath() {
+    let path = window.location.pathname;
+
+    if (BASE_PATH && path.startsWith(BASE_PATH)) {
+        path = path.slice(BASE_PATH.length);
+    }
+
+    return path || "/";
 }
 
-function setActiveLink(path){
-    const link = document.querySelectorAll("[data-link]")
-
-    link.forEach(link=>{
-        link.classList.remove("active")
-         if(link.getAttribute("href")===path){
-            link.classList.add("active")
-         }
-    })
+function createRouteLink(path) {
+    return `${BASE_PATH}${path === "/" ? "/" : path}`;
 }
 
-function navigate(path){
-    const page = routes[path]
+function setActiveLink(path) {
+    const links = document.querySelectorAll("[data-link]");
 
-    const content = document.querySelector("#content")
+    links.forEach(link => {
+        link.classList.remove("active");
 
-    if(!page){
-        content.innerHTML="<h1>404 - Page Not Found</h1>";
+        const linkPath = link.getAttribute("href");
+
+        if (linkPath === createRouteLink(path)) {
+            link.classList.add("active");
+        }
+    });
+}
+
+function navigate(path) {
+    const page = routes[path];
+    const content = document.querySelector("#content");
+
+    if (!page) {
+        content.innerHTML = "<h1>404 - Page Not Found</h1>";
         return;
     }
-    content.innerHTML=""
 
-    content.appendChild(page())
+    content.innerHTML = "";
+    content.appendChild(page());
+
+    setActiveLink(path);
 }
 
-document.addEventListener("click",(e)=>{
+document.addEventListener("click", (e) => {
     const link = e.target.closest("[data-link]");
 
-    if(link){
-        e.preventDefault()
-        const path = link.getAttribute("href")
-        history.pushState({},"",path)
-        navigate(path)
-        setActiveLink(path)
-    }
-})
+    if (link) {
+        e.preventDefault();
 
-window.addEventListener("popstate", () => {
-    navigate(window.location.pathname);
-    setActiveLink(location.pathname)
+        const url = new URL(link.href);
+        const path = getRoutePathFromUrl(url.pathname);
+
+        history.pushState({}, "", url.pathname);
+
+        navigate(path);
+    }
 });
 
-navigate(window.location.pathname);
-setActiveLink(location.pathname)
+function getRoutePathFromUrl(pathname) {
+    if (BASE_PATH && pathname.startsWith(BASE_PATH)) {
+        pathname = pathname.slice(BASE_PATH.length);
+    }
+
+    return pathname || "/";
+}
+window.addEventListener("popstate", () => {
+    navigate(getRoutePath());
+});
+navigate(getRoutePath());
