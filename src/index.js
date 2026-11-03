@@ -4,7 +4,18 @@ import Menu from "./pages/menu"
 
 const routes={
     "/":homePage,
-    "/menu":Menu
+    "/menu":Menu,
+}
+
+function setActiveLink(path){
+    const link = document.querySelectorAll("[data-link]")
+
+    link.forEach(link=>{
+        link.classList.remove("active")
+         if(link.getAttribute("href")===path){
+            link.classList.add("active")
+         }
+    })
 }
 
 function navigate(path){
@@ -29,11 +40,14 @@ document.addEventListener("click",(e)=>{
         const path = link.getAttribute("href")
         history.pushState({},"",path)
         navigate(path)
+        setActiveLink(path)
     }
 })
 
 window.addEventListener("popstate", () => {
     navigate(window.location.pathname);
+    setActiveLink(location.pathname)
 });
 
 navigate(window.location.pathname);
+setActiveLink(location.pathname)

@@ -105,6 +105,10 @@ button {
     color: var(--primary);
 }
 
+.nav-links a.active {
+    color: var(--primary);
+}
+
 .cart-button {
     position: relative;
     width: 43px;
