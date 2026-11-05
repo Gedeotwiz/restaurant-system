@@ -1,6 +1,9 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+
+const isProduction = process.env.NODE_ENV === "production";
+
 module.exports = {
     mode: "development",
 
@@ -9,7 +12,8 @@ module.exports = {
     output: {
         filename: "main.js",
         path: path.resolve(__dirname, "dist"),
-        clean: true
+        clean: true,
+        publicPath: isProduction ? "/restaurant-system/" : "/"
     },
 
     module: {
@@ -25,5 +29,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "./src/template.html"
         })
-    ]
+    ],
+
+    devServer: {
+    port: 8080,
+    historyApiFallback: true
+}
 };

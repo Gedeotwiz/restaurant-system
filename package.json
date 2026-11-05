@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --watch",
-    "build": "webpack",
+    "start": "webpack serve --mode development",
+    "build": "webpack --mode production",
+    "deploy": "gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,6 +22,7 @@
   "homepage": "https://github.com/Gedeotwiz/restaurant-system#readme",
   "devDependencies": {
     "css-loader": "^7.1.5",
+    "gh-pages": "^6.3.0",
     "html-webpack-plugin": "^5.6.8",
     "style-loader": "^4.0.0",
     "webpack": "^5.112.2",
