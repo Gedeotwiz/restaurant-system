@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
-    "deploy": "gh-pages -d dist",
+    "deploy": "npm run build && gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/Gedeotwiz/restaurant-system/issues"
   },
-  "homepage": "https://github.com/Gedeotwiz/restaurant-system#readme",
+  "homepage": "https://gedeotwiz.github.io/restaurant-system/",
   "devDependencies": {
     "css-loader": "^7.1.5",
     "gh-pages": "^6.3.0",

@@ -31,13 +31,17 @@ function setActiveLink(path) {
     links.forEach(link => {
         link.classList.remove("active");
 
-        const linkPath = link.getAttribute("href");
+        const linkPath = link.dataset.route;
 
         if (linkPath === createRouteLink(path)) {
             link.classList.add("active");
         }
     });
 }
+
+document.querySelectorAll("[data-route]").forEach(link => {
+    link.href = createRouteLink(link.dataset.route);
+});
 
 function navigate(path) {
     const page = routes[path];

@@ -2,10 +2,11 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 
-const isProduction = process.env.NODE_ENV === "production";
+module.exports = (env, argv) => {
+    const isProduction = argv.mode === "production";
 
-module.exports = {
-    mode: "development",
+    return {
+    mode: isProduction ? "production" : "development",
 
     entry: "./src/index.js",
 
@@ -35,4 +36,5 @@ module.exports = {
     port: 8080,
     historyApiFallback: true
 }
+    };
 };
